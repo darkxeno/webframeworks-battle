@@ -20,6 +20,7 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectHTTPServer
+import MongoDB
 
 // Create HTTP server.
 let server = HTTPServer()
@@ -31,8 +32,8 @@ routes.add(method: .get, uri: "/", handler: {
 		response.setHeader(.contentType, value: "text/html")
 		response.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
 		response.completed()
-	}
-)
+	})
+routes.add(method: .get, uri: "/test", handler: mongoHandler)
 
 // Add the routes to the server.
 server.addRoutes(routes)
