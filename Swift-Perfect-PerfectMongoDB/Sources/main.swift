@@ -22,6 +22,12 @@ import PerfectHTTP
 import PerfectHTTPServer
 import MongoDB
 
+#if os(Linux)
+    import Glibc
+#else
+    import Darwin
+#endif
+
 // Create HTTP server.
 let server = HTTPServer()
 
@@ -29,11 +35,21 @@ let server = HTTPServer()
 var routes = Routes()
 routes.add(method: .get, uri: "/", handler: {
 		request, response in
-		response.setHeader(.contentType, value: "text/html")
-		response.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
+		response.setHeader(.contentType, value: "text/plain")
+		response.appendBody(string: "Swift-Perfect-PerfectMongoDB")
 		response.completed()
 	})
 routes.add(method: .get, uri: "/test", handler: mongoHandler)
+
+func getEnvVar(name: String) -> String {
+
+	//print("getEnvVar: \(name)=\(getenv(name))")
+	if( getenv(name) != nil ){
+    	return String(cString:getenv(name))
+    }
+
+    return ""
+}
 
 // Add the routes to the server.
 server.addRoutes(routes)

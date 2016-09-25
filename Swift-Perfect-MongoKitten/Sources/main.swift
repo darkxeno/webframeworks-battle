@@ -42,8 +42,8 @@ let server = HTTPServer()
 var routes = Routes()
 routes.add(method: .get, uri: "/", handler: {
 		request, response in
-		response.setHeader(.contentType, value: "text/html")
-		response.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
+		response.setHeader(.contentType, value: "text/plain")
+		response.appendBody(string: "Swift-Perfect-MongoKitten")
 		response.completed()
 	})
 routes.add(method: .get, uri: "/test", handler: mongoHandler)

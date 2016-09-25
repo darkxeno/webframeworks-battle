@@ -8,7 +8,8 @@ var app = koa();
 var collection;
 
 // Connection url
-const url = 'mongodb://localhost:27017/local';
+const mongoURL = process.env.MONGODB_URL || 'localhost:27017';
+const url = 'mongodb://'+mongoURL+'/local';
 // Connect using MongoClient
 mongodb.MongoClient.connect(url, { promiseLibrary: Promise })
   .then((db)=>{
@@ -16,7 +17,7 @@ mongodb.MongoClient.connect(url, { promiseLibrary: Promise })
   });
 
 app.use(route.get('/',function *home(next){
-  this.body = 'hello world';
+  this.body = 'NodeJS-Koa-MongoDBNative';
 }));
 
 app.use(route.get('/test',function *test(next){

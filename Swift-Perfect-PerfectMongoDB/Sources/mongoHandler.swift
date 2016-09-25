@@ -13,8 +13,11 @@ import MongoDB
 
 func mongoHandler(request: HTTPRequest, _ response: HTTPResponse){
     
+
+    let mongoURL = getEnvVar(name:"MONGODB_URL")=="" ? "mongodb://localhost" : getEnvVar(name:"MONGODB_URL");
+
     // open a connection
-    let client = try! MongoClient(uri: "mongodb://localhost")
+    let client = try! MongoClient(uri: mongoURL)
     
     // set database, assuming "test" exists
     let db = client.getDatabase(name: "local")
