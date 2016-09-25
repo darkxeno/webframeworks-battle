@@ -1,2 +1,2 @@
-swift build
+swift build -Xswiftc -O
 .build/debug/PerfectTemplate

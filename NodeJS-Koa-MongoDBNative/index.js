@@ -7,34 +7,10 @@ var Promise = require('bluebird');
 var app = koa();
 var collection;
 
-const mongoConfig = {
-  promiseLibrary: Promise,
-  replSet: {
-    w: 1,
-    wtimeout: 0,
-    fsync: false,
-    journal: false,
-    readPreference: null,
-    nativeParser: false,
-    forceServerObjectId: false,
-    recordQueryStats: false,
-    retryMiliSeconds: 5000,
-    numberOfRetries: 5,  
-    
-    poolSize: 20,
-      socketOptions: {
-        noDelay: true,
-        keepAlive: 0,
-        connectTimeoutMS: 0,
-        socketTimeoutMS: 0
-      }
-  }
-};
-
 // Connection url
 const url = 'mongodb://localhost:27017/local';
 // Connect using MongoClient
-mongodb.MongoClient.connect(url, mongoConfig)
+mongodb.MongoClient.connect(url, { promiseLibrary: Promise })
   .then((db)=>{
     collection = db.collection('testData');   
   });
