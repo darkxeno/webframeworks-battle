@@ -4,6 +4,7 @@ import (
   "github.com/go-gas/gas"
   "net/http"
   //"fmt"
+  "runtime"
   "log"
   "strconv"
   "gopkg.in/mgo.v2"
@@ -47,6 +48,8 @@ type PersonExtended struct {
 func main() {
   g := gas.Default()
   g.LoadConfig("config.yaml")
+
+  runtime.GOMAXPROCS(6)
 
   g.Router.Get("/", Index)
   g.Router.Get("/user", GetUser)
