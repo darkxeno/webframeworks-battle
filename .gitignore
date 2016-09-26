@@ -1,2 +1,5 @@
 GasGo/src/log
 GasGo/pkg
+GasGo/log
+NodeJS-Koa-MongoDBNative/node_modules
+npm-debug.log
