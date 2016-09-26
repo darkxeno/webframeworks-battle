@@ -22,8 +22,8 @@ app.use(route.get('/',function *home(next){
 
 app.use(route.get('/test',function *test(next){
   if(collection){
-    const limit = this.query.limit || 100;
-    const results = yield collection.find().limit(10).toArray();
+    const limit = parseInt(this.query.limit || 100);
+    const results = yield collection.find().limit(limit).toArray();
     this.body={data: results};    
   } else {
     this.throw(404,'No collection',{ error:'No collection' });

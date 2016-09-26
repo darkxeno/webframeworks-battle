@@ -26,7 +26,7 @@ func mongoHandler(request: HTTPRequest, _ response: HTTPResponse){
     guard let collection = db.getCollection(name: "testData") else {
         print("testData not found")
         return
-    }
+    }   
     
     // Here we clean up our connection,
     // by backing out in reverse order created
@@ -51,6 +51,7 @@ func mongoHandler(request: HTTPRequest, _ response: HTTPResponse){
     let returning = "{\"data\":[\(arr.joined(separator: ","))]}"
 
     // Return the JSON string
+    response.setHeader(.contentType, value: "application/json; charset=utf-8")
     response.appendBody(string: returning)
     response.completed()
 }
