@@ -1,4 +1,4 @@
-# webframeworks-battle
+# Web Frameworks - battle
 
 Objectives:
 * Compare the performance of diferent programming languages / frameworks / libs
